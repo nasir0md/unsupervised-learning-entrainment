@@ -2,7 +2,7 @@ Software supporting "Modeling Vocal Entrainment in Conversational Speech using D
 ------------------------------------------------------------------------------------------
 written by Md Nasir
 -------------------
-Updated on July 1, 2020
+Updated on July 1, 2020 (Work in Progress)
 ------------------------
 
 Scripts are written in Python 2.7
