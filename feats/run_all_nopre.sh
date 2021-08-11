@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # cmddir=/home/nasir/inter_dynamics/scripts/NPC
 cmddir=.
-featdir=/home/nasir/data/Fisher/feats
-raw_featdir=/home/nasir/data/Fisher/raw_feats
-audiodirroot=/data/Fisher/ldc2004s13
+featdir=~/Downloads/Fisher_corpus/feats
+raw_featdir=~/Downloads/Fisher_corpus/raw_feats
+audiodirroot=~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2
 
 numParallelJobs=24
 ctr=1
@@ -22,14 +22,14 @@ ctr=1
 # 	python $cmddir/feat_extract_nopre.py --audio_file $file --openSMILE_config $cmddir/emobase2010_haoqi_revised.conf --output_path $featdir
 # done
 
-
+##make this recursive, search all subfolders
 for dir in $audiodirroot/f*;
 do
 	for f in  $dir/audio/*/*.sph;
 	do
 		echo $f;
 	 (
-	 	python $cmddir/feat_extract_nopre.py --audio_file $f --openSMILE_config $cmddir/emobase2010_haoqi_revised.conf --output_path $featdir
+	 	python2 $cmddir/feat_extract_nopre.py --audio_file $f --openSMILE_config $cmddir/emobase2010_haoqi_revised.conf --output_path $featdir
 	 	) &
 	if [ $(($ctr % $numParallelJobs)) -eq 0 ]
 	then

@@ -16,8 +16,8 @@ from torchvision.utils import save_image
 import matplotlib.pyplot as plt
 
 
-model_path = '/home/nasir/workspace/acoustic/triplet/fisher/trained_models/'
-work_dir = '/home/nasir/workspace/acoustic/NED_ecdc/'
+model_path = '~/Downloads/workspace/acoustic/triplet/fisher/trained_models/'
+work_dir = '~/Downloads/workspace/acoustic/NED_ecdc/'
 model_name = model_path + 'triplet_64d_50ep_fisher.pkl'
 
 SEED = 448

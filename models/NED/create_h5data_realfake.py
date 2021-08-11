@@ -99,7 +99,7 @@ hf.close()
 
 
 
-data_dir = '/home/nasir/data/Fisher/feats_nonorm_nopre/'
+data_dir = '~/Downloads/Fisher_corpus/feats_nonorm_nopre/'
 
 
 sessList= sorted(glob.glob(data_dir + '*.csv'))

@@ -14,7 +14,7 @@ frac_val = 0
 
 # Create h5 files
 
-data_dir = '/home/nasir/data/suicide/feats_nonorm/'
+data_dir = '~/Downloads/Fisher_corpus/feats_nonorm'
 
 sessList= sorted(glob.glob(data_dir + '*.csv'))
 random.seed(SEED)

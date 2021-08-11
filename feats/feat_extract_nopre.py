@@ -18,14 +18,14 @@ import matplotlib.pyplot as plt
 import pdb
 
 # -----------------
-def_wav = '/home/nasir/xData/newdata/Fisher/ldc2004s13/fe_03_p1_sph1/audio/001/fe_03_00101.sph'
+def_wav = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
 config_path = 'emobase2010_haoqi_revised.conf'
-# out_dir = '/home/nasir/data/Fisher/feats_nonorm_nopre'
-out_dir = '/home/nasir/data/Fisher/feats'
+# out_dir = '~/Downloads/Fisher_corpus/feats_nonorm_nopre'
+out_dir = '~/Downloads/Fisher_corpus/feats'
 
-#trans == /home/nasir/xData/newdata/Fisher/ldc2004s13/Fisher English Training Speech Part 1 Transcripts (LDC2004S19)/data/trans/000
+#trans ==~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/data/trans/000
 # fe_03_00001.txt
-# feats == /home/nasir/xData/newdata/Fisher/ldc2004s13/fe_03_p1_sph1/feats/000
+# feats == ~/Downloads/Fisher_corpus/feats/000
 
 # feat_extract_MN.py --audio_file wav/fe_03_00001.sph -- --openSMILE_config emobase2010_haoqi_revised.conf --output_path feats
 
@@ -34,13 +34,13 @@ writing=True   # set True for getting functionals
 extract=True 
 
 # For posidon -----------------------------------
-# transcript_dir='/home/nasir/xData/newdata/Fisher/ldc2004s13/fe_03_p1_sph1/trans/'
-# feat_dir = '/home/nasir/xData/newdata/Fisher/ldc2004s13/fe_03_p1_sph1/feats/all_dir/'
+# transcript_dir='~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/fe_03_p1_sph1/trans'
+# feat_dir = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/fe_03_p1_sph1/feats'
 #-------------------------------------------------
 
 # For t-rex -------------------------------------
-transcript_dir='/home/nasir/data/Fisher/transcripts/'
-feat_dir = '/home/nasir/data/Fisher/raw_feats/'
+transcript_dir='~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2'
+feat_dir = '~/Downloads/Fisher_corpus/raw_feats/'
 #------------------------------------------------
 
 # ------------------------------------------------------------------------
@@ -88,8 +88,9 @@ if extract:
 		not_wav = True
 		print >> sys.stderr,  'convert to .wav file...' 
 		# cmd2wav = 'sox ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
-		cmd2wav = 'sph2pipe -f rif ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
+		cmd2wav = '~/github/sph2pipe/sph2pipe -f rif ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
 		subprocess.call(cmd2wav, shell  = True)
+
 		INPUT_audio = basename(INPUT_audio).split('.')[-2]+'.wav'
 		file_to_be_removed = basename(INPUT_audio).split('.')[-2]+'.wav'
 	# ------------------------------------------------------------------------

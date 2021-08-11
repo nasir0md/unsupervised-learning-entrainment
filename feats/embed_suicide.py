@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 
 
 model_name = 'models/trained_VAE_030318_nonorm.pt'
-data_dir = '/home/nasir/data/suicide/feats_nonorm/'
+data_dir = '~/Downloads/Fisher_corpus/feats_nonorm_nopre'
 dtset = 'suicide'
 
 SEED=448

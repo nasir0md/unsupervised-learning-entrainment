@@ -14,14 +14,16 @@ import argparse
 import subprocess
 import commands
 from sklearn import preprocessing
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import pdb
 
 # -----------------
-def_wav = '/home/nasir/xData/newdata/Fisher/ldc2004s13/fe_03_p1_sph1/audio/001/fe_03_00101.sph'
+def_wav = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fe_03_p1_sph1/audio/001/fe_03_00101.sph'
 config_path = 'emobase2010_revised.conf'
 # out_dir = '/home/nasir/data/Fisher/feats_nonorm_nopre'
-out_dir = '/home/nasir/data/Fisher/feats'
+out_dir = '~/Downloads/Fisher_corpus/featsy'
 
 #trans == /home/nasir/xData/newdata/Fisher/ldc2004s13/Fisher English Training Speech Part 1 Transcripts (LDC2004S19)/data/trans/000
 # fe_03_00001.txt
@@ -39,8 +41,8 @@ extract=True
 #-------------------------------------------------
 
 # For t-rex -------------------------------------
-transcript_dir='/home/nasir/data/Fisher/transcripts/'
-feat_dir = '/home/nasir/data/Fisher/raw_feats/'
+transcript_dir='~/Downloads/Fisher_corpus/fe_03_p1_tran'
+feat_dir = '~/Downloads/Fisher_corpus/raw_feats/'
 #------------------------------------------------
 
 # ------------------------------------------------------------------------
@@ -87,9 +89,10 @@ if extract:
 	if basename(INPUT_audio).split('.')[-1] != 'wav':
 		not_wav = True
 		print >> sys.stderr,  'convert to .wav file...' 
-		# cmd2wav = 'sox ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
-		cmd2wav = 'sph2pipe -f rif ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
+		cmd2wav = 'sox ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav rate 16k'
+		# cmd2wav = '~/github/sph2pipe/sph2pipe -f rif ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
 		subprocess.call(cmd2wav, shell  = True)
+
 		INPUT_audio = basename(INPUT_audio).split('.')[-2]+'.wav'
 		file_to_be_removed = basename(INPUT_audio).split('.')[-2]+'.wav'
 	# ------------------------------------------------------------------------
