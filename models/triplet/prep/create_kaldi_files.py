@@ -26,8 +26,8 @@ for dir in os.listdir(audio_dir_root):
 				audio_path = subdir + '/' + subsubdir + '/'+ audio
 				audio = audio.split(".")[0]
 				sess_id = audio.split('_')[-1]
-				# wavscpf.write(audio + ' ~/github/sph2pipe/sph2pipe -f wav -p -c 1 ' + audio_path + ' |\n')
-				wavscpf.write(audio + ' sox ' + audio_path +' channels 1 rate 16k '+ ' |\n')
+				wavscpf.write(audio + ' ~/github/sph2pipe/sph2pipe -f wav -p -c 1 ' + audio_path + ' |\n')
+				# wavscpf.write(audio + ' sox ' + audio_path +' channels 1 rate 16k '+ ' |\n')
 				transcript =  transcript_dir + audio + '.txt'
 				trans = open(transcript).readlines()
 				spk_list = []

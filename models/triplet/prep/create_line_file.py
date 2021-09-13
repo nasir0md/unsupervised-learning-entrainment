@@ -3,8 +3,8 @@ import os
 import csv
 import pdb
 import pickle
-transcript_dir='/home/nasir/data/Fisher/transcripts/'
-audio_dir_root = "/media/Drobo/Data/Fisher/ldc2004s13/"
+transcript_dir='~/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans'
+audio_dir_root = "~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2"
 metaf = open('Fisher_meta.csv', 'rb')
 
 
@@ -26,7 +26,7 @@ for dir in os.listdir(audio_dir_root):
 				audio_path = subdir + '/' + subsubdir + '/'+ audio
 				audio = audio.split(".")[0]
 				sess_id = audio.split('_')[-1]
-				# wavscpf.write(audio + ' ~/github/sph2pipe/sph2pipe -f wav -p -c 1 ' + audio_path + ' |\n')
+				wavscpf.write(audio + ' ~/github/sph2pipe/sph2pipe -f wav -p -c 1 ' + audio_path + ' |\n')
 				transcript =  transcript_dir + audio + '.txt'
 				trans = open(transcript).readlines()
 				spk_list = []
