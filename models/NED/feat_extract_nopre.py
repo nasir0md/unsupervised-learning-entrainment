@@ -23,6 +23,7 @@ import pdb
 # -----------------
 def_wav = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
 config_path = 'emobase2010_revised.conf'
+opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'
 # out_dir = '/home/nasir/data/Fisher/feats_nonorm_nopre'
 out_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm_nopre'
 
@@ -53,7 +54,7 @@ parser = argparse.ArgumentParser(description='Process some integers.')
 
 parser.add_argument('--audio_file', type=str, required=False, default=def_wav,
 					help='File path of the input audio file')
-parser.add_argument('--openSMILE_config', type=str, required=False, default=config_path,
+parser.add_argument('--openSMILE_config', type=str, required=False, default=opensmile,
 					help='config file of openSMILE')
 parser.add_argument('--output_path', type=str, required=False, default=out_dir,
 					help='output folder path')
@@ -123,7 +124,7 @@ if extract:
 	else:
 		csv_file_name = feat_dir+'/'+basename(INPUT_audio).split('.wav')[0] + '.csv'
 	print >> sys.stderr,  "Using openSMILE to extract features ... "
-	cmd_feat = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract -nologfile -C %s -I %s -O %s' %(CONFIG_openSMILE, INPUT_audio, csv_file_name)
+	cmd_feat = '%s -nologfile -C -I %s -O %s' %(CONFIG_openSMILE, INPUT_audio, csv_file_name)
 	subprocess.call(cmd_feat, shell  = True)
 
 	# delete resampled audio file
@@ -250,14 +251,12 @@ if norm:
 	f0                            = np.reshape(f0,(-1,1))
 	
 	# f0_de normalization
-	f0_de                         = np.copy(feat_data[:, 74])
-	print "f0_de: ", f0_de
+	f0_de                          = np.copy(feat_data[:, 74])
 	f0_de[f0_de==0.]               = np.nan
-	f0_de_mean                    = np.nanmean(f0_de)
-	assert f0_de_mean != 0
-	print f0_de_mean
+	f0_de_mean                     = np.nanmean(np.absolute(f0_de))
 	f0_de[~np.isnan(f0_de)]       = np.log2(f0_de[~np.isnan(f0_de)]/f0_de_mean)
 	f0_de                         = np.reshape(f0_de,(-1,1))
+
 	# intensity normalization
 	intensity                     = np.copy(feat_data[:,2])
 	int_mean                      = np.mean(intensity)

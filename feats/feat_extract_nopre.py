@@ -383,7 +383,6 @@ whole_func_feat = np.hstack((whole_func_feat1,whole_func_feat2))
 
 if writing==True:
 	feat_csv_file_name = out_dir + '/' + basename(csv_file_name).split('.csv')[0] + '_IPU_func_feat.csv'
-	print feat_csv_file_name
 	with open(feat_csv_file_name, 'wb') as fcsv:
 		writer = csv.writer(fcsv)
 		writer.writerows(whole_func_feat)
