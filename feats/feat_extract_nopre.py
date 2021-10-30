@@ -19,6 +19,7 @@ import pdb
 
 # -----------------
 def_wav = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
+def_audio = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio'
 config_path = 'emobase2010_haoqi_revised.conf'
 # out_dir = '~/Downloads/Fisher_corpus/feats_nonorm_nopre'
 out_dir = '~/Downloads/Fisher_corpus/feats'
@@ -48,7 +49,7 @@ feat_dir = '~/Downloads/Fisher_corpus/raw_feats/'
 # ------------------------------------------------------------------------
 parser = argparse.ArgumentParser(description='Process some integers.')
 
-parser.add_argument('--audio_file', type=str, required=False, default=def_wav,
+parser.add_argument('--audio_file', type=str, required=False, default=def_audio,
 					help='File path of the input audio file')
 parser.add_argument('--openSMILE_config', type=str, required=False, default=config_path,
 					help='config file of openSMILE')

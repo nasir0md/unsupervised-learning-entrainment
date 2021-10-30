@@ -22,6 +22,7 @@ import pdb
 
 # -----------------
 def_wav = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
+def_audio = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/'
 config_path = 'emobase2010_revised.conf'
 opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'
 # out_dir = '/home/nasir/data/Fisher/feats_nonorm_nopre'
@@ -52,7 +53,7 @@ feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats/'
 # ------------------------------------------------------------------------
 parser = argparse.ArgumentParser(description='Process some integers.')
 
-parser.add_argument('--audio_file', type=str, required=False, default=def_wav,
+parser.add_argument('--audio_file', type=str, required=False, default=def_audio,
 					help='File path of the input audio file')
 parser.add_argument('--openSMILE_config', type=str, required=False, default=opensmile,
 					help='config file of openSMILE')
@@ -254,7 +255,7 @@ if norm:
 	f0_de                          = np.copy(feat_data[:, 74])
 	f0_de[f0_de==0.]               = np.nan
 	f0_de_mean                     = np.nanmean(np.absolute(f0_de))
-	f0_de[~np.isnan(f0_de)]       = np.log2(f0_de[~np.isnan(f0_de)]/f0_de_mean)
+	f0_de[~np.isnan(f0_de)]       = np.log2(np.absolute(f0_de[~np.isnan(f0_de)]/f0_de_mean))
 	f0_de                         = np.reshape(f0_de,(-1,1))
 
 	# intensity normalization
@@ -343,7 +344,6 @@ def func_calculate(input_feat_matrix):
 	output_feat = np.array([], dtype=np.float32).reshape(1, -1)
 	num_feat = input_feat_matrix.shape[1]
 	for i in range(num_feat):
-		#print i
 		tmp              = input_feat_matrix[:,i]
 		tmp_no_nan       = tmp[~np.isnan(tmp)]
 		if tmp_no_nan.size == 0:
@@ -390,7 +390,7 @@ whole_func_feat = np.hstack((whole_func_feat1,whole_func_feat2))
 
 if writing==True:
 	feat_csv_file_name = out_dir + '/' + basename(csv_file_name).split('.csv')[0] + '_IPU_func_feat.csv'
-	print feat_csv_file_name
+	# print feat_csv_file_name
 	with open(feat_csv_file_name, 'wb') as fcsv:
 		writer = csv.writer(fcsv)
 		writer.writerows(whole_func_feat)
