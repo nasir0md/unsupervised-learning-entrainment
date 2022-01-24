@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # cmddir=/home/nasir/inter_dynamics/scripts/NPC
-cmddir=.
+cmddir= .
 featdir=~/Downloads/Fisher_corpus/feats
 raw_featdir=~/Downloads/Fisher_corpus/raw_feats
 audiodirroot=~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2
@@ -29,7 +29,7 @@ do
 	do
 		echo $f;
 	 (
-	 	python2 $cmddir/feat_extract_nopre.py --audio_file $f --openSMILE_config $cmddir/emobase2010_haoqi_revised.conf --output_path $featdir
+	 	/Users/meghavarshinikrishnaswamy/.conda/envs/unsupervised-learning-entrainment/bin/python2 $cmddir/feat_extract_nopre.py --audio_file $f --openSMILE_config $cmddir/emobase2010_haoqi_revised.conf --output_path $featdir
 	 	) &
 	if [ $(($ctr % $numParallelJobs)) -eq 0 ]
 	then

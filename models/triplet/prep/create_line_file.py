@@ -7,7 +7,6 @@ transcript_dir='~/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans'
 audio_dir_root = "~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2"
 metaf = open('Fisher_meta.csv', 'rb')
 
-
 reader = csv.reader(metaf)
 metadata ={}
 for row in reader:

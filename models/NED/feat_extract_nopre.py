@@ -15,16 +15,18 @@ import argparse
 import subprocess
 import commands
 from sklearn import preprocessing
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
+# import matplotlib
+# matplotlib.use('TkAgg')
+# import matplotlib.pyplot as plt
 import pdb
-
+print sys.path
+print '\n'
 # -----------------
 def_wav = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
 def_audio = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/'
 config_path = 'emobase2010_revised.conf'
 opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'
+opensmile_config = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/config/emobase/emobase2010.conf'
 # out_dir = '/home/nasir/data/Fisher/feats_nonorm_nopre'
 out_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm_nopre'
 
@@ -45,7 +47,7 @@ extract=True
 
 # For t-rex -------------------------------------
 transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans/'
-feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats/'
+feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats'
 #------------------------------------------------
 
 # ------------------------------------------------------------------------
@@ -53,9 +55,11 @@ feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats/'
 # ------------------------------------------------------------------------
 parser = argparse.ArgumentParser(description='Process some integers.')
 
-parser.add_argument('--audio_file', type=str, required=False, default=def_audio,
+parser.add_argument('--audio_file', type=str, required=False, default=def_wav,
 					help='File path of the input audio file')
-parser.add_argument('--openSMILE_config', type=str, required=False, default=opensmile,
+parser.add_argument('--openSMILE', type=str, required=False, default=opensmile,
+					help='openSMILE path')
+parser.add_argument('--openSMILE_config', type=str, required=False, default=opensmile_config,
 					help='config file of openSMILE')
 parser.add_argument('--output_path', type=str, required=False, default=out_dir,
 					help='output folder path')
@@ -67,6 +71,7 @@ parser.add_argument('--shift_size', required=False, type=float, default=1)
 args = parser.parse_args()
 
 CONFIG_openSMILE = args.openSMILE_config
+openSMILE		 =	args.openSMILE
 INPUT_audio      = args.audio_file
 OUTPUT_path      = args.output_path
 
@@ -114,6 +119,7 @@ if extract:
 		# replace variable with downsampled audio
 		#INPUT_audio = ''.join(output_16k_audio.split('--')[1:])
 		INPUT_audio = output_16k_audio
+		print os.path.abspath(INPUT_audio)
 
 	# # ------------------------------------------------------------------------
 	# # extract feature use openSMILE
@@ -125,7 +131,8 @@ if extract:
 	else:
 		csv_file_name = feat_dir+'/'+basename(INPUT_audio).split('.wav')[0] + '.csv'
 	print >> sys.stderr,  "Using openSMILE to extract features ... "
-	cmd_feat = '%s -nologfile -C -I %s -O %s' %(CONFIG_openSMILE, INPUT_audio, csv_file_name)
+	cmd_feat = '%s -nologfile -C %s -I %s -O %s' %(openSMILE, opensmile_config, os.path.abspath(INPUT_audio), csv_file_name)
+	print cmd_feat
 	subprocess.call(cmd_feat, shell  = True)
 
 	# delete resampled audio file
@@ -157,7 +164,6 @@ for line in trans:
 		if line[0] !='#':
 			start, stop, spk = line.split(':')[0].split(' ')
 			spk_list.append([start, stop, spk])
-
 # ------------------------------------------------------------------------
 # functional calculation: this has to be  PER Utterance (for entrainment)
 # ------------------------------------------------------------------------
@@ -169,12 +175,11 @@ for line in trans:
 # csv_file_name = feat_dir +'/'+basename(INPUT_audio).split('.sph')[0] + '.csv'
 
 if extract:
-	csv_file_name = feat_dir +basename(INPUT_audio).split(ext)[0].split('--')[1]  + '.csv'
+	csv_file_name = feat_dir + '/' + basename(INPUT_audio).split(ext)[0].split('--')[1]  + '.csv'
 else:
-	csv_file_name = feat_dir +basename(INPUT_audio).split(ext)[0]  + '.csv'
-
+	csv_file_name = feat_dir + '/' + basename(INPUT_audio).split(ext)[0]  + '.csv'
 # read csv feature file
-csv_feat = pd.read_csv(csv_file_name, dtype=np.float32)
+csv_feat = pd.read_csv(csv_file_name, sep=',', dtype=np.float32, error_bad_lines=False)
 csv_feat = csv_feat.values.copy()
 
 feat_data = np.copy(csv_feat)

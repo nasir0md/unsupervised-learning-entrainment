@@ -8,21 +8,23 @@ from __future__ import division
 import sys, os
 import csv
 from os.path import basename
+from os.path import exists
 import pandas as pd
 import numpy as np
 import argparse
 import subprocess
 import commands
 from sklearn import preprocessing
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import pdb
 
 # -----------------
 def_wav = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
-def_audio = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio'
+def_audio = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
 config_path = 'emobase2010_haoqi_revised.conf'
 # out_dir = '~/Downloads/Fisher_corpus/feats_nonorm_nopre'
 out_dir = '~/Downloads/Fisher_corpus/feats'
+opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'
 
 #trans ==~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/data/trans/000
 # fe_03_00001.txt
@@ -40,7 +42,7 @@ extract=True
 #-------------------------------------------------
 
 # For t-rex -------------------------------------
-transcript_dir='~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2'
+transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans/'
 feat_dir = '~/Downloads/Fisher_corpus/raw_feats/'
 #------------------------------------------------
 
@@ -49,9 +51,9 @@ feat_dir = '~/Downloads/Fisher_corpus/raw_feats/'
 # ------------------------------------------------------------------------
 parser = argparse.ArgumentParser(description='Process some integers.')
 
-parser.add_argument('--audio_file', type=str, required=False, default=def_audio,
+parser.add_argument('--audio_file', type=str, required=False, default=def_wav,
 					help='File path of the input audio file')
-parser.add_argument('--openSMILE_config', type=str, required=False, default=config_path,
+parser.add_argument('--openSMILE_config', type=str, required=False, default=opensmile,
 					help='config file of openSMILE')
 parser.add_argument('--output_path', type=str, required=False, default=out_dir,
 					help='output folder path')
@@ -109,6 +111,7 @@ if extract:
 		# replace variable with downsampled audio
 		#INPUT_audio = ''.join(output_16k_audio.split('--')[1:])
 		INPUT_audio = output_16k_audio
+		print exists(INPUT_audio)
 
 	# # ------------------------------------------------------------------------
 	# # extract feature use openSMILE
@@ -120,7 +123,8 @@ if extract:
 	else:
 		csv_file_name = feat_dir+'/'+basename(INPUT_audio).split('.wav')[0] + '.csv'
 	print >> sys.stderr,  "Using openSMILE to extract features ... "
-	cmd_feat = 'SMILExtract -nologfile -C %s -I %s -O %s' %(CONFIG_openSMILE, INPUT_audio, csv_file_name)
+	cmd_feat = '%s -nologfile -C -I %s -O %s' % (CONFIG_openSMILE, INPUT_audio, csv_file_name)
+	print cmd_feat
 	subprocess.call(cmd_feat, shell  = True)
 
 	# delete resampled audio file
@@ -248,8 +252,8 @@ if norm:
 	# f0_de normalization
 	f0_de                         = np.copy(feat_data[:, 74])
 	f0_de[f0_de==0.]               = np.nan
-	f0_de_mean                    = np.nanmean(f0_de)
-	f0_de[~np.isnan(f0_de)]       = np.log2(f0_de[~np.isnan(f0_de)]/f0_de_mean)
+	f0_de_mean                    = np.nanmean(np.absolute(f0_de))
+	f0_de[~np.isnan(f0_de)]       = np.log2(np.absolute(f0_de[~np.isnan(f0_de)]/f0_de_mean))
 	f0_de                         = np.reshape(f0_de,(-1,1))
 	# intensity normalization
 	intensity                     = np.copy(feat_data[:,2])
