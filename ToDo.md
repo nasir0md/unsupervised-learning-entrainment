@@ -10,3 +10,5 @@ Install:
 pip2
 torch 1.4
 torchvision
+
+Create the metadata file using sess_id+PIN from the .tbl files in the Fisher transcript folder. [DO NOT UPLOAD THIS]
