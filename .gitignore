@@ -1,0 +1,7 @@
+# directories i added for myself
+output
+test_data
+
+.idea/
+
+*/.DS_Store

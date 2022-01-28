@@ -1,0 +1,8 @@
+# you can do a requirements.txt file like this if you want
+wheel
+torch
+torchtext
+torchaudio
+sklearn
+numpy
+
