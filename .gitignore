@@ -1,0 +1,12 @@
+# directories i added for myself
+output
+test_data
+
+.idea/
+
+*/.DS_Store
+
+# Kaldi files:
+ models/triplet/prep/segments
+ models/triplet/prep/utt2spk
+ models/triplet/prep/wav.scp

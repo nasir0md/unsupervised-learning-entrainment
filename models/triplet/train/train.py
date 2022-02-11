@@ -13,6 +13,7 @@ import h5py
 
 cuda = torch.cuda.is_available()
 
+# you can move these hard-coded paths to a config file
 # Set up data loaders
 datadir = '/home/nasir/workspace/acoustic/triplet/fisher/data'
 model_path = '/home/nasir/workspace/acoustic/triplet/fisher/trained_models/'
@@ -20,6 +21,7 @@ model_path = '/home/nasir/workspace/acoustic/triplet/fisher/trained_models/'
 fdset = EntTripDataset(datadir + '/'+  'train_Fisher_triplet_norm.h5')
 fdset_val = EntTripDataset(datadir + '/' + 'val_Fisher_triplet_norm.h5')
 
+# also add hyperparameters like this to a config file
 batch_size = 256
 kwargs = {'num_workers': 4, 'pin_memory': True} if cuda else {}
 
