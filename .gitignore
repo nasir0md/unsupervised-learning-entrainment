@@ -7,7 +7,6 @@ test_data
 */.DS_Store
 
 # Kaldi files:
-# models/NED/~/
-# models/triplet/prep/segments
-# models/triplet/prep/utt2spk
-# models/triplet/prep/wav.scp
+ models/triplet/prep/segments
+ models/triplet/prep/utt2spk
+ models/triplet/prep/wav.scp
