@@ -3,24 +3,28 @@ import os
 import csv
 import pdb
 
-transcript_dir='~/Downloads/Fisher_corpus/fe_03_p1_tran'
-audio_dir_root = "~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2"
-metaf = open('Fisher_meta.csv', 'rb')
+transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans'
+audio_dir_root = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2'
+metaf = open('/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/Fisher_meta.csv', 'rb')
 
 
 reader = csv.reader(metaf)
 metadata ={}
 for row in reader:
 	metadata[row[0]] = row[1:]
-
+print("yes")
 wavscpf = open('./wav.scp', 'w')
 segf = open('./segments', 'w')
 uttf = open('./utt2spk', 'w')
 
 
 for dir in os.listdir(audio_dir_root):
-	if "fe_03_p1" in dir:
-		subdir = audio_dir_root + dir + "/audio" 
+	print(dir)
+	# if "fe_03_p1" in dir:
+	if "fisher_eng_tr" in dir:
+		print("yes")
+		subdir = audio_dir_root + "/" + dir + "/audio"
+		print(subdir)
 		for subsubdir in os.listdir(subdir):
 			for audio in os.listdir(subdir + '/' + subsubdir):
 				audio_path = subdir + '/' + subsubdir + '/'+ audio
@@ -28,7 +32,7 @@ for dir in os.listdir(audio_dir_root):
 				sess_id = audio.split('_')[-1]
 				wavscpf.write(audio + ' ~/github/sph2pipe/sph2pipe -f wav -p -c 1 ' + audio_path + ' |\n')
 				# wavscpf.write(audio + ' sox ' + audio_path +' channels 1 rate 16k '+ ' |\n')
-				transcript =  transcript_dir + audio + '.txt'
+				transcript =  transcript_dir + "/"+ audio + '.txt'
 				trans = open(transcript).readlines()
 				spk_list = []
 				for line in trans:
