@@ -32,7 +32,7 @@ triplet_test_loader = torch.utils.data.DataLoader(fdset_val, batch_size=batch_si
 # Set up the network and training parameters
 from networks import EmbeddingNet, TripletNet
 from losses import TripletLoss
-
+#these mean that embeddingnet and triplet net were used
 margin = 1.
 embedding_net = EmbeddingNet()
 model = TripletNet(embedding_net)

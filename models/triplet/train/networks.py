@@ -59,7 +59,7 @@ class EmbeddingNetL2(EmbeddingNet):
 
 
 class ClassificationNet(nn.Module):
-    def __init__(self, embedding_net, n_classes):
+    def __init__(self, embedding_net, n_classes): #embedding net objects, one of the linear layers
         super(ClassificationNet, self).__init__()
         self.embedding_net = embedding_net
         self.n_classes = n_classes
