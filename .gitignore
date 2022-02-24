@@ -10,3 +10,6 @@ test_data
  models/triplet/prep/segments
  models/triplet/prep/utt2spk
  models/triplet/prep/wav.scp
+
+
+entrainment_config.pyc
