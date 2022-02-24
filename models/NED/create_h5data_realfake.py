@@ -14,8 +14,7 @@ frac_val = 0.1
 
 # Create h5 files
 
-
-
+feats_nonorm_nopre
 data_dir = '/home/nasir/data/Fisher/feats_nonorm/'
 
 
