@@ -1,28 +1,28 @@
 # incorporates elements from https://github.com/marcovzla/discobert/blob/master/config.py
-
+from __future__ import division
 from argparse import Namespace
 import os
-from __future__ import division
 import sys, os
 import csv
 from os.path import basename
 from os.path import exists
 import pandas as pd
 import numpy as np
+import time
 import argparse
 import subprocess
 import commands
-from sklearn import preprocessing
 # import matplotlib.pyplot as plt
 import pdb
-
+import glob
+import random
 import h5py
 import pdb
 import numpy as np
 import csv
+import kaldi_io
 import argparse
 # from aeent import *
-from ecdc import *
 import torch
 import torch.utils.data
 from torch.utils.data import Dataset
@@ -31,7 +31,13 @@ from torch.autograd import Variable
 from torch.nn import functional as F
 from torchvision import datasets, transforms
 from torchvision.utils import save_image
-import matplotlib.pyplot as plt
+import math
+import pprint, pickle
+from sklearn import preprocessing
+from sklearn.metrics.pairwise import euclidean_distances
+from scipy import spatial
+from sklearn.preprocessing import normalize
+# import matplotlib.pyplot as plt
 
 ### ABSOLUTE FILEPATHS FOR INPUT, SOFTWARE#####
 print sys.path
@@ -42,11 +48,12 @@ opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/open
 opensmile_config = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/config/emobase/emobase2010.conf'
 sph2pipe = "/Users/meghavarshinikrishnaswamy/github/sph2pipe/sph2pipe"
 
-transcript_dir='~/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans'
-audio_dir_root = "~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2"
-metaf = open('Fisher_meta.csv', 'rb')
+transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans'
+audio_dir_root = "/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2"
+fisher_meta = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/Fisher_meta.csv'
 
 ###### OUTPUT FILES ###########
+feats_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats'
 data_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm'
 feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats'
 out_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm_nopre'

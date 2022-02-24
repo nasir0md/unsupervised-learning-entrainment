@@ -1,15 +1,5 @@
-import glob
-import os
-import csv
-import pdb
-import kaldi_io
-import pprint, pickle
-from sklearn.metrics.pairwise import euclidean_distances
-from scipy import spatial
-from sklearn.preprocessing import normalize
-import random, math
-import numpy as np
-import pandas as pd
+from entrainment_config import *
+
 # -------------------------------------------------------- 
 # only used once for reading kaldi ivector
 # create_pkl = False
@@ -23,8 +13,6 @@ import pandas as pd
 # --------------------------------------------------------------------------
 
 # key format     "SPKID-FILEID_Start-Stop"
-
-
 
 
 def get_neighbor(sess_id, ivec_norm_dict, utt_id):
@@ -53,12 +41,12 @@ def get_utt_id(line, metadata):
 	return utt_id
 
 # --------------------------------------------------------------------------------------------
-transcript_dir='/home/nasir/data/Fisher/transcripts/'
+transcript_dir= transcript_dir
 
 
-turnfeatdir = '/home/nasir/data/Fisher/feats/'
+turnfeatdir = feats_dir
 
-metaf = open('meta/Fisher_meta.csv', 'r')
+metaf = open(fisher_meta, 'r')
 
 
 reader = csv.reader(metaf)
@@ -122,8 +110,3 @@ for sessfile in sessList:
 		pdb.set_trace()
 		if turnno==totTurns:
 			break
-
-		
-
-
-			

@@ -1,30 +1,23 @@
-import glob
-import os
-import csv
-import pdb
+from entrainment_config import *
 
-transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans'
-audio_dir_root = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2'
-metaf = open('/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/Fisher_meta.csv', 'rb')
+transcript_dir= transcript_dir
+audio_dir_root = audio_dir_root
+metaf = open(fisher_meta, 'rb')
 
 
 reader = csv.reader(metaf)
 metadata ={}
 for row in reader:
 	metadata[row[0]] = row[1:]
-print("yes")
 wavscpf = open('./wav.scp', 'w')
 segf = open('./segments', 'w')
 uttf = open('./utt2spk', 'w')
 
 
 for dir in os.listdir(audio_dir_root):
-	print(dir)
 	# if "fe_03_p1" in dir:
 	if "fisher_eng_tr" in dir:
-		print("yes")
 		subdir = audio_dir_root + "/" + dir + "/audio"
-		print(subdir)
 		for subsubdir in os.listdir(subdir):
 			for audio in os.listdir(subdir + '/' + subsubdir):
 				audio_path = subdir + '/' + subsubdir + '/'+ audio
@@ -48,8 +41,6 @@ for dir in os.listdir(audio_dir_root):
 							segf.write(utt_id + ' ' + audio + ' ' + start + ' '+ stop + '\n')
 							uttf.write(utt_id + ' ' +spk +'\n')
 				# print audio, spk_list[0][2]
-
-
 
 
 wavscpf.close()

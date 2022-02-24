@@ -1,12 +1,4 @@
-import csv
-import h5py
-import numpy as np
-import pandas as pd
-import glob
-import random
-import pdb
-import os
-import time
+from entrainment_config import *
 
 SEED=448
 frac_train = 0.8
@@ -32,7 +24,7 @@ dataset_id = 'Fisher_acoustic'
 norm_id = 'nonorm'
 dim = 228
 
-data_dir = '~/Downloads/Fisher_corpus/feats'
+data_dir = feats_dir
 
 sessList = sorted(glob.glob(data_dir + '*.csv'))
 # sessList= [f for f in sorted(glob.glob(data_dir + '*.csv')) if int(os.path.basename(f).split('.')[0].split('_')[-2]) < 800]
