@@ -4,27 +4,16 @@
 # Date   : 05-04-18
 # Description : resample to 16k Hz, and run openSMILE to extract features
 # ------------------------------------------------------------------------
-from __future__ import division
-import sys, os
-import csv
-from os.path import basename
-from os.path import exists
-import pandas as pd
-import numpy as np
-import argparse
-import subprocess
-import commands
-from sklearn import preprocessing
-# import matplotlib.pyplot as plt
-import pdb
+from entrainment_config import *
 
+# import matplotlib.pyplot as plt
 # -----------------
-def_wav = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
-def_audio = '~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
-config_path = 'emobase2010_haoqi_revised.conf'
+def_wav = def_wav'/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
+def_audio = def_audio
+config_path = config_path
 # out_dir = '~/Downloads/Fisher_corpus/feats_nonorm_nopre'
-out_dir = '~/Downloads/Fisher_corpus/feats'
-opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'
+out_dir = feats_dir
+opensmile = opensmile
 
 #trans ==~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/data/trans/000
 # fe_03_00001.txt
@@ -43,7 +32,7 @@ extract=True
 
 # For t-rex -------------------------------------
 transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans/'
-feat_dir = '~/Downloads/Fisher_corpus/raw_feats/'
+feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats/'
 #------------------------------------------------
 
 # ------------------------------------------------------------------------

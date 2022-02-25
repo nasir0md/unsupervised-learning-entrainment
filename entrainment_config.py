@@ -43,10 +43,11 @@ from sklearn.preprocessing import normalize
 print sys.path
 print '\n'
 def_wav = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
-def_audio = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/'
+def_audio = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
 opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'
 opensmile_config = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/config/emobase/emobase2010.conf'
 sph2pipe = "/Users/meghavarshinikrishnaswamy/github/sph2pipe/sph2pipe"
+config_path = '/Users/meghavarshinikrishnaswamy/github/unsupervised-learning-entrainment/feats/emobase2010_mod.conf'
 
 transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans'
 audio_dir_root = "/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2"
@@ -57,6 +58,8 @@ feats_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats'
 data_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm'
 feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats'
 out_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm_nopre'
+fdset = 'data/train_Fisher_nonorm.h5'
+temp_testfile = 'data/tmp.csv'
 # DEBUG = False # no saving of files; output in the terminal; first random seed from the list
 
 
