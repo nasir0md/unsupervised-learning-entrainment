@@ -53,6 +53,8 @@ transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p
 audio_dir_root = "/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2"
 fisher_meta = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/Fisher_meta.csv'
 
+temp_testfile = '/Users/meghavarshinikrishnaswamy/github/unsupervised-learning-entrainment/models/NED/data/tmp.csv'
+ivec_scp = "/home/nasir/data/Fisher/Fisher_ivector/ivectors_train/ivector.scp"
 ###### OUTPUT FILES ###########
 feats_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats'
 data_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm'

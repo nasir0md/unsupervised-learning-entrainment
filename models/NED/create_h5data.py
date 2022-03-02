@@ -106,7 +106,7 @@ print len(sessTrain) + len(sessVal) + len(sessTest)
 
 
 # Create Test Data file
-temp_testfile = 'data/tmp.csv'
+temp_testfile = temp_testfile
 ftmp = open(temp_testfile, 'a')
 
 spk_base = 1
