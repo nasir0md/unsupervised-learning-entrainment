@@ -19,6 +19,10 @@
 9. How are i-vectors created? 
    - Kaldi files ? Check if these are pre-created, or if they are created.
 10. Check out load: tkinter
-11. What does `tmp.csv` in `create_h5data.py` do?
+11. What does `tmp.csv` in `NED/create_h5data.py` do?
+    - Gets created in the python file, so look into the notes there.
+    - Also, feats directory is empty, so work on running run_all_nopre.sh properly
+    - Right now, its not running opensmile and `feat_extract_nopre.py` correctly.
 12. How is the `/media/nasir/xData/newdata/Fisher/ldc2004s13/fe_03_p1_sph1/feats/000/` being generated in analysis_trial.m? What does it do?
 13. How is `/home/nasir/data/Fisher/feats_triplets_all/` in `triplet/prep/create_h5data.py` created? What does it do?
+14. Fix `test/test_session.py` with the workpace directories

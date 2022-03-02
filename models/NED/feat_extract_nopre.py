@@ -180,6 +180,7 @@ else:
 	csv_file_name = feat_dir + '/' + basename(INPUT_audio).split(ext)[0]  + '.csv'
 
 # read csv feature file
+print csv_file_name
 csv_feat = pd.read_csv(csv_file_name, sep=',', dtype=np.float32, error_bad_lines=False)
 csv_feat = csv_feat.values.copy()
 print "this is a temporary fix, need to figure out why these weird feature extraction lines are getting printed in the first place"

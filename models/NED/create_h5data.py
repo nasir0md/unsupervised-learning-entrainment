@@ -23,8 +23,8 @@ def clean_feat(XX, dim):
 dataset_id = 'Fisher_acoustic'
 norm_id = 'nonorm'
 dim = 228
-
-data_dir = feats_dir
+# Making files for the test partition, with train and val commented out. Try uncommenting, and make this happen
+data_dir = feats_dir #this is empty right now, let feature files be populated
 
 sessList = sorted(glob.glob(data_dir + '*.csv'))
 # sessList= [f for f in sorted(glob.glob(data_dir + '*.csv')) if int(os.path.basename(f).split('.')[0].split('_')[-2]) < 800]
