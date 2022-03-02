@@ -62,6 +62,9 @@ feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats'
 out_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm_nopre'
 fdset = 'data/train_Fisher_nonorm.h5'
 temp_testfile = 'data/tmp.csv'
+model_name = 'models/trained_VAE_nonorm_nopre_l1.pt'
+#FIX THIS
+data_dir_triplets = '/home/nasir/data/Fisher/feats_triplets_all/'
 # DEBUG = False # no saving of files; output in the terminal; first random seed from the list
 
 

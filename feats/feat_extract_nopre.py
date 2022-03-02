@@ -8,7 +8,7 @@ from entrainment_config import *
 
 # import matplotlib.pyplot as plt
 # -----------------
-def_wav = def_wav'/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
+def_wav = def_wav
 def_audio = def_audio
 config_path = config_path
 # out_dir = '~/Downloads/Fisher_corpus/feats_nonorm_nopre'
@@ -31,8 +31,8 @@ extract=True
 #-------------------------------------------------
 
 # For t-rex -------------------------------------
-transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans/'
-feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats/'
+transcript_dir= transcript_dir
+feat_dir = feat_dir
 #------------------------------------------------
 
 # ------------------------------------------------------------------------

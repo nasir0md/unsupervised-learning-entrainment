@@ -1,10 +1,4 @@
-import csv
-import h5py
-import numpy as np
-import pandas as pd
-import glob
-import random
-import pdb
+from entrainment_config import *
 
 SEED=448
 frac_train = 0.8
@@ -16,7 +10,7 @@ frac_val = 0.1
 
 
 
-data_dir = '~/Downloads/Fisher_corpus/feats_nonorm'
+data_dir = data_dir
 
 
 sessList= sorted(glob.glob(data_dir + '*.csv'))
@@ -99,8 +93,7 @@ hf.close()
 
 
 
-data_dir = '~/Downloads/Fisher_corpus/feats_nonorm_nopre'
-
+data_dir = data_dir
 
 sessList= sorted(glob.glob(data_dir + '*.csv'))
 random.seed(SEED)

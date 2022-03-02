@@ -1,18 +1,11 @@
-import csv
-import h5py
-import numpy as np
-import pandas as pd
-import glob
-import random
-import pdb
-
+from entrainment_config import *
 SEED=448
 frac_train = 0.8
 frac_val = 0.1
 
 # Create h5 files
 
-data_dir = '/home/nasir/data/Fisher/feats_triplets_all/'
+data_dir_triplets = data_dir_triplets
 
 
 sessList= sorted(glob.glob(data_dir + '*.csv'))

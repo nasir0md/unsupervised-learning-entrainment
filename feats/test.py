@@ -1,24 +1,7 @@
-import h5py
-import pdb
+from entrainment_config import *
+
 # from aeent import *
-from ecdc import *
-import numpy as np 
-import csv
-import random
-import argparse
-import torch
-import torch.utils.data
-from torch.utils.data import Dataset
-from torch import nn, optim
-from torch.autograd import Variable
-# from torch.nn import functional as F
-from torchvision import datasets, transforms
-from torchvision.utils import save_image
-# import matplotlib.pyplot as plt
-
-
-
-model_name = 'models/trained_VAE_nonorm_nopre_l1.pt'
+model_name = model_name
 
 
 SEED=448

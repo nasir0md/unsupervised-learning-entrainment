@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # cmddir=/home/nasir/inter_dynamics/scripts/NPC
 cmddir= .
-featdir=~/Downloads/Fisher_corpus/feats
-raw_featdir=~/Downloads/Fisher_corpus/raw_feats
-audiodirroot=~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2
+featdir=/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats
+raw_featdir= /Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats
+audiodirroot=/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2
 
 numParallelJobs=24
 ctr=1
