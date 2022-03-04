@@ -43,7 +43,7 @@ from sklearn.preprocessing import normalize
 print sys.path
 print '\n'
 def_wav = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
-def_audio = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
+def_audio = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio'
 opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'
 opensmile_config = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/config/emobase/emobase2010.conf'
 sph2pipe = "/Users/meghavarshinikrishnaswamy/github/sph2pipe/sph2pipe"
@@ -67,6 +67,8 @@ model_name = 'models/trained_VAE_nonorm_nopre_l1.pt'
 data_dir_triplets = '/home/nasir/data/Fisher/feats_triplets_all/'
 # DEBUG = False # no saving of files; output in the terminal; first random seed from the list
 
+model_path = '/Users/meghavarshinikrishnaswamy/Downloads/workspace/acoustic/triplet/fisher/trained_models/'
+work_dir = '/Users/meghavarshinikrishnaswamy/Downloads/workspace/acoustic/NED_ecdc/'
 
 ##### ARGPARSE COMMANDS #######
 parser = argparse.ArgumentParser(description='Process some integers.')

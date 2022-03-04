@@ -15,10 +15,9 @@ config_path = config_path
 out_dir = feats_dir
 opensmile = opensmile
 
-#trans ==~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/data/trans/000
+#trans =~/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/data/trans/000
 # fe_03_00001.txt
 # feats == ~/Downloads/Fisher_corpus/feats/000
-
 # feat_extract_MN.py --audio_file wav/fe_03_00001.sph -- --openSMILE_config emobase2010_haoqi_revised.conf --output_path feats
 
 IPU_gap=50

@@ -1,7 +1,7 @@
 from entrainment_config import *
 
-model_path = '~/Downloads/workspace/acoustic/triplet/fisher/trained_models/'
-work_dir = '~/Downloads/workspace/acoustic/NED_ecdc/'
+model_path = model_path
+work_dir = work_dir
 model_name = model_path + 'triplet_64d_50ep_fisher.pkl'
 
 SEED = 448

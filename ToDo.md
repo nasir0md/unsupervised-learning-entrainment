@@ -14,15 +14,15 @@
     - try train.py, (command+click for different variables/classes)
     - Checkout normutils.py, see if it helps
 8. Find out how long these things take
-    - creation of I-vectors could be time-consuming
+    - creation of ivectors could be time-consuming
     - Kaldi can take time, comp. resources.
-9. How are i-vectors created? 
-   - Kaldi files ? Check if these are pre-created, or if they are created.
+~~9. How are ivectors created?~~ 
+   - ~~Kaldi files ? Check if these are pre-created, or if they are created.~~
 10. Check out load: tkinter
 11. What does `tmp.csv` in `NED/create_h5data.py` do?
     - Gets created in the python file, so look into the notes there.
     - Also, feats directory is empty, so work on running run_all_nopre.sh properly
-    - Right now, its not running opensmile and `feat_extract_nopre.py` correctly.
+    - Right now, it's not running opensmile and `feat_extract_nopre.py` correctly.
 12. How is the `/media/nasir/xData/newdata/Fisher/ldc2004s13/fe_03_p1_sph1/feats/000/` being generated in analysis_trial.m? What does it do?
 13. How is `/home/nasir/data/Fisher/feats_triplets_all/` in `triplet/prep/create_h5data.py` created? What does it do?
 14. Fix `test/test_session.py` with the workpace directories

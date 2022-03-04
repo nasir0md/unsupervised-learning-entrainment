@@ -4,21 +4,12 @@
 # Date   : 05-04-18
 # Description : resample to 16k Hz, and run openSMILE to extract features
 # ------------------------------------------------------------------------
-from __future__ import division
-import sys, os
-import csv
-from os.path import basename
-import pandas as pd
-import numpy as np
 np.set_printoptions(threshold=np.inf)
-import argparse
-import subprocess
-import commands
-from sklearn import preprocessing
+
 # import matplotlib
 # matplotlib.use('TkAgg')
 # import matplotlib.pyplot as plt
-import pdb
+
 print sys.path
 print '\n'
 # -----------------
