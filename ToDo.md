@@ -26,3 +26,10 @@
 12. How is the `/media/nasir/xData/newdata/Fisher/ldc2004s13/fe_03_p1_sph1/feats/000/` being generated in analysis_trial.m? What does it do?
 13. How is `/home/nasir/data/Fisher/feats_triplets_all/` in `triplet/prep/create_h5data.py` created? What does it do?
 14. Fix `test/test_session.py` with the workpace directories
+15. Work on a README
+    1. External dependencies:
+	    - LDC data
+	    - Python dependencies
+	    - Software
+    2. Editing config file
+    3. Main entry Point
