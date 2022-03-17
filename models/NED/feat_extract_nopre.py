@@ -4,6 +4,8 @@
 # Date   : 05-04-18
 # Description : resample to 16k Hz, and run openSMILE to extract features
 # ------------------------------------------------------------------------
+from entrainment_config import *
+
 np.set_printoptions(threshold=np.inf)
 
 # import matplotlib
@@ -89,6 +91,7 @@ if extract:
 		not_wav = True
 		print >> sys.stderr,  'convert to .wav file...' 
 		# cmd2wav = 'sox ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav rate 16k'
+		print basename(INPUT_audio).split('.')
 		cmd2wav = '~/github/sph2pipe/sph2pipe -f rif ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
 		print >> sys.stderr, '.wav conversion complete...'
 		subprocess.call(cmd2wav, shell  = True)
