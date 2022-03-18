@@ -11,17 +11,14 @@ np.set_printoptions(threshold=np.inf)
 # import matplotlib
 # matplotlib.use('TkAgg')
 # import matplotlib.pyplot as plt
-
-print sys.path
-print '\n'
 # -----------------
-def_wav = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
-def_audio = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/'
-config_path = 'emobase2010_revised.conf'
-opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'
-opensmile_config = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/config/emobase/emobase2010.conf'
-# out_dir = '/home/nasir/data/Fisher/feats_nonorm_nopre'
-out_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm_nopre'
+# def_wav = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
+# def_audio = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/'
+# config_path = 'emobase2010_revised.conf'
+# opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'
+# opensmile_config = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/config/emobase/emobase2010.conf'
+# # out_dir = '/home/nasir/data/Fisher/feats_nonorm_nopre'
+# out_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_nonorm_nopre'
 
 #trans == /home/nasir/xData/newdata/Fisher/ldc2004s13/Fisher English Training Speech Part 1 Transcripts (LDC2004S19)/data/trans/000
 # fe_03_00001.txt
@@ -39,8 +36,8 @@ extract=True
 #-------------------------------------------------
 
 # For t-rex -------------------------------------
-transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans/'
-feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats'
+# transcript_dir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fe_03_p1_tran/data/trans/all_trans/'
+# feat_dir = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats'
 #------------------------------------------------
 
 # ------------------------------------------------------------------------
@@ -91,7 +88,6 @@ if extract:
 		not_wav = True
 		print >> sys.stderr,  'convert to .wav file...' 
 		# cmd2wav = 'sox ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav rate 16k'
-		print basename(INPUT_audio).split('.')
 		cmd2wav = '~/github/sph2pipe/sph2pipe -f rif ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
 		print >> sys.stderr, '.wav conversion complete...'
 		subprocess.call(cmd2wav, shell  = True)
@@ -113,7 +109,7 @@ if extract:
 		# replace variable with downsampled audio
 		#INPUT_audio = ''.join(output_16k_audio.split('--')[1:])
 		INPUT_audio = output_16k_audio
-		print os.path.abspath(INPUT_audio)
+		print "input audio file: "+ os.path.abspath(INPUT_audio)
 
 	# # ------------------------------------------------------------------------
 	# # extract feature use openSMILE
@@ -148,9 +144,9 @@ else:
 	ext='.csv'
 
 if extract:
-	transcript = transcript_dir + basename(INPUT_audio).split(ext)[0].split('--')[1] + '.txt'
+	transcript = transcript_dir + '/' + basename(INPUT_audio).split(ext)[0].split('--')[1] + '.txt'
 else:
-	transcript = transcript_dir + basename(INPUT_audio).split(ext)[0] + '.txt'
+	transcript = transcript_dir + '/' + basename(INPUT_audio).split(ext)[0] + '.txt'
 trans = open(transcript).readlines()
 # pdb.set_trace()
 for line in trans:
