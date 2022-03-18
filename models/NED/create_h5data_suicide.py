@@ -28,7 +28,7 @@ num_files_test = num_files_all - num_files_train - num_files_val
 sessTrain = sessList[:num_files_train]
 sessVal = sessList[num_files_train:num_files_val+num_files_train]
 sessTest = sessList[num_files_val+num_files_train:]
-print len(sessTrain) + len(sessVal) + len(sessTest)
+print(len(sessTrain) + len(sessVal) + len(sessTest))
 
 # all files separately
 hfs = h5py.File('data/test_suicide_nonorm_sep.h5', 'w')  

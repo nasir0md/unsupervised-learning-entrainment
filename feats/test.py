@@ -47,7 +47,7 @@ if 'l1' in model_name:
 elif 'l2' in model_name:
     p=2
 else:
-    print "need better model name"
+    print("need better model name")
     p=2
 
     pdb
@@ -108,9 +108,9 @@ fake_test_loss /= X_test.shape[0]
 
 Loss=np.array(Loss)
 Fake_loss=np.array(Fake_loss)
-print "Total Real Loss:"+str(test_loss) + "Total Fake Loss:" + str(fake_test_loss)
+print("Total Real Loss:"+str(test_loss) + "Total Fake Loss:" + str(fake_test_loss))
 
-print float(np.sum(Loss < Fake_loss))/Loss.shape[0]
+print(float(np.sum(Loss < Fake_loss))/Loss.shape[0])
 
 
 

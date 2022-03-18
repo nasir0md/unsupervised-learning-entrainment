@@ -65,7 +65,7 @@ if 'l1' in model_name:
 elif 'l2' in model_name:
     p=2
 else:
-    print "need better model name"
+    print("need better model name")
     p=1
 
 
@@ -86,7 +86,7 @@ for sess_file in sessList:
 
     if 'Pre' not in sess and 'pre' not in sess:
         continue
-    print sess
+    print(sess)
     subj_id = float(sess[0:4])
     if str(int(subj_id)) not in highbond:
         continue

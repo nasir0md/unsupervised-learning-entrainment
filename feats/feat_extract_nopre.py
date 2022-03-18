@@ -67,7 +67,7 @@ if shift_size is None:
 if norm == 'False':
 	norm = False
 
-print >> sys.stderr,  'Current audio file: %s ' %INPUT_audio
+print('Current audio file: %s ' %INPUT_audio, file=sys.stderr)
 
 #----------------------------------------------------------------
 #---------------------------------------------------------------------
@@ -77,7 +77,7 @@ if extract:
 	not_wav = False
 	if basename(INPUT_audio).split('.')[-1] != 'wav':
 		not_wav = True
-		print >> sys.stderr,  'convert to .wav file...' 
+		print('convert to .wav file...', file=sys.stderr) 
 		# cmd2wav = 'sox ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
 		cmd2wav = '~/github/sph2pipe/sph2pipe -f rif ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
 		subprocess.call(cmd2wav, shell  = True)
@@ -92,14 +92,14 @@ if extract:
 	not_16k = False
 	if sample_rate[1] != '16000':
 		not_16k = True
-		print >> sys.stderr,  "Resampling to 16k ... "
+		print("Resampling to 16k ... ", file=sys.stderr)
 		output_16k_audio = 'resampled--' + os.path.basename(INPUT_audio)
 		cmd_resample = 'sox %s -b 16 -c 1 -r 16k %s dither -s' %(INPUT_audio, output_16k_audio)
 		subprocess.call(cmd_resample, shell  = True)
 		# replace variable with downsampled audio
 		#INPUT_audio = ''.join(output_16k_audio.split('--')[1:])
 		INPUT_audio = output_16k_audio
-		print exists(INPUT_audio)
+		print(exists(INPUT_audio))
 
 	# # ------------------------------------------------------------------------
 	# # extract feature use openSMILE
@@ -110,9 +110,9 @@ if extract:
 		csv_file_name = feat_dir+'/'+basename(INPUT_audio).split('.wav')[0].split('--')[1] + '.csv'
 	else:
 		csv_file_name = feat_dir+'/'+basename(INPUT_audio).split('.wav')[0] + '.csv'
-	print >> sys.stderr,  "Using openSMILE to extract features ... "
+	print("Using openSMILE to extract features ... ", file=sys.stderr)
 	cmd_feat = '%s -nologfile -C -I %s -O %s' % (CONFIG_openSMILE, INPUT_audio, csv_file_name)
-	print cmd_feat
+	print(cmd_feat)
 	subprocess.call(cmd_feat, shell  = True)
 
 	# delete resampled audio file
@@ -163,10 +163,10 @@ else:
 # read csv feature file
 csv_feat = pd.read_csv(csv_file_name, dtype=np.float32, error_bad_lines=False)
 csv_feat = csv_feat.values.copy()
-print "this is a temporary fix, need to figure out why these weird feature extraction lines are getting printed in the first place"
+print("this is a temporary fix, need to figure out why these weird feature extraction lines are getting printed in the first place")
 feat_data = np.copy(csv_feat)
 # convert the first column indext to int index
-sample_index = map(int,list((feat_data[:,0])))
+sample_index = list(map(int,list((feat_data[:,0]))))
 
 
 # def turn_level_index(spk_list, sample_index):
@@ -228,7 +228,7 @@ for i, itm in enumerate(turn_level_index_list):
 # normalize for loudness 
 if norm:
 	# do normalization
-	print >> sys.stderr,  "Do session level feature normalization... "
+	print("Do session level feature normalization... ", file=sys.stderr)
 	# f0 normalization
 	f0                            = np.copy(feat_data[:, 70])
 	# replace 0 in f0 with nan
@@ -257,7 +257,7 @@ if norm:
 	
 	# all other features normalization, just 
 	# feat_idx                      = range(3,34) + range(37, 68)   with spectral de
-	feat_idx                      = range(3,34)
+	feat_idx                      = list(range(3,34))
 	mfcc_etc                      = np.copy(feat_data[:,feat_idx])
 	
 	mfcc_etc_mean                 = np.mean(mfcc_etc, axis=0)
@@ -273,7 +273,7 @@ if norm:
 	jitter_shimmer_norm           = jitter_shimmer - jitter_shimmer_mean
 else:
 	# did not do session level normalization
-	print >> sys.stderr,  "Ignore session level feature normalization... "
+	print("Ignore session level feature normalization... ", file=sys.stderr)
 	# f0 normalization
 	f0                            = np.copy(feat_data[:, 70])
 	# replace 0 in f0 with nan
@@ -295,7 +295,7 @@ else:
 	intensity_de                  = np.reshape(intensity_de, (-1,1))
 	
 	# feat_idx                      = range(3,34) + range(37, 68)   with spectral de
-	feat_idx                      = range(3,34)
+	feat_idx                      = list(range(3,34))
 	mfcc_etc                      = np.copy(feat_data[:,feat_idx])
 	mfcc_etc_norm                 =  np.copy(mfcc_etc) 
 	

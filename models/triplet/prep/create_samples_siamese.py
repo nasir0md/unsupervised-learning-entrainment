@@ -19,7 +19,7 @@ def get_neighbor(sess_id, ivec_norm_dict, utt_id):
 	turn2ivec = ivec_norm_dict[utt_id]
 	turnlist = list(ivec_norm_dict.keys())
 	candidates = random.sample(turnlist, 10000)
-	candidates = list(filter(lambda x: sess_id not in x, candidates))
+	candidates = list([x for x in candidates if sess_id not in x])
 	lenpool = len(candidates)
 	# print(lenpool)
 	cosD = np.zeros(lenpool)
@@ -74,7 +74,7 @@ num_files_test = num_files_all - num_files_train - num_files_val
 sessTrain = sessList[:num_files_train]
 sessVal = sessList[num_files_train:num_files_val+num_files_train]
 sessTest = sessList[num_files_val+num_files_train:]
-print(len(sessTrain) + len(sessVal) + len(sessTest))
+print((len(sessTrain) + len(sessVal) + len(sessTest)))
 # ------------------------------------------------------------
 #  FOR DEBUG
 sessList = [turnfeatdir + 'fe_03_03892_IPU_func_feat.csv']

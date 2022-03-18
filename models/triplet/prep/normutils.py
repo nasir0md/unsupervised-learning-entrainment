@@ -59,7 +59,7 @@ def normalizefeats(feat_data, norm):
 		jitter_shimmer_norm           = jitter_shimmer - jitter_shimmer_mean
 	else:
 		# did not do session level normalization
-		print("Ignore session level feature normalization... ", file=sys.stderr)
+		print("Ignore session level feature normalization... ", sys.stderr)
 		# f0 normalization
 		f0                            = np.copy(feat_data[:, 70])
 		# replace 0 in f0 with nan

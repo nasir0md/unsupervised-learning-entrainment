@@ -1,27 +1,24 @@
 # incorporates elements from https://github.com/marcovzla/discobert/blob/master/config.py
-from __future__ import division
+
+import argparse
 from argparse import Namespace
 import os
-import sys, os
-import csv
 from os.path import basename
 from os.path import exists
+import sys
+import csv
 import pandas as pd
 import numpy as np
 import time
-import argparse
 import subprocess
-import commands
+import subprocess
 # import matplotlib.pyplot as plt
 import pdb
 import glob
 import random
 import h5py
 import pdb
-import numpy as np
-import csv
 import kaldi_io
-import argparse
 # from aeent import *
 import torch
 import torch.utils.data
@@ -35,13 +32,14 @@ import math
 import pprint, pickle
 from sklearn import preprocessing
 from sklearn.metrics.pairwise import euclidean_distances
-from scipy import spatial
 from sklearn.preprocessing import normalize
+from scipy import spatial
+
 # import matplotlib.pyplot as plt
 
 ### ABSOLUTE FILEPATHS FOR INPUT, SOFTWARE#####
-print sys.path
-print '\n'
+print(sys.path)
+print('\n')
 def_wav = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio/001/fe_03_00101.sph'
 def_audio = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2/fisher_eng_tr_sp_d1/audio'
 opensmile = '/Users/meghavarshinikrishnaswamy/github/tomcat-speech/external/opensmile-3.0/bin/SMILExtract'

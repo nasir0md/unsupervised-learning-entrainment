@@ -30,7 +30,7 @@ num_files_test = num_files_all - num_files_train - num_files_val
 sessTrain = sessList[:num_files_train]
 sessVal = sessList[num_files_train:num_files_val+num_files_train]
 sessTest = sessList[num_files_val+num_files_train:]
-print len(sessTrain) + len(sessVal) + len(sessTest)
+print(len(sessTrain) + len(sessVal) + len(sessTest))
 
 # Create Train Data file
 
@@ -113,7 +113,7 @@ num_files_test = num_files_all - num_files_train - num_files_val
 sessTrain = sessList[:num_files_train]
 sessVal = sessList[num_files_train:num_files_val+num_files_train]
 sessTest = sessList[num_files_val+num_files_train:]
-print len(sessTrain) + len(sessVal) + len(sessTest)
+print(len(sessTrain) + len(sessVal) + len(sessTest))
 
 # Create Train Data file
 

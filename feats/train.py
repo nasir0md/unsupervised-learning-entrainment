@@ -69,8 +69,8 @@ def train(epoch):
                 # 100. * batch_idx / len(train_loader),
                 # loss.data[0] / len(data)))
     train_loss /=  len(train_loader.dataset)
-    print('====> Epoch: {} Average loss: {:.4f}'.format(
-          epoch, train_loss))
+    print(('====> Epoch: {} Average loss: {:.4f}'.format(
+          epoch, train_loss)))
 
     return train_loss
 
@@ -88,14 +88,14 @@ def validate(epoch):
         val_loss += loss_function(recon_batch, y_data).data[0]
 
     val_loss /= len(val_loader.dataset)
-    print('====> Validation set loss: {:.4f}'.format(val_loss))
+    print(('====> Validation set loss: {:.4f}'.format(val_loss)))
     return val_loss
 
 
 Tloss =[]
 Vloss =[]
 best_loss=np.inf
-print "This is Sparta!!"
+print("This is Sparta!!")
 
 for epoch in range(1, args.epochs + 1):
     tloss = train(epoch)

@@ -44,7 +44,7 @@ if 'l1' in model_name:
 elif 'l2' in model_name:
     p=2
 else:
-    print "need better model name"
+    print("need better model name")
     p=2
 
 results = []
@@ -100,11 +100,11 @@ for k in range(10):
     total_fake_test_loss = np.sum(Fake_loss)/Loss.shape[0]
 
 
-    print "Total Real Loss:"+str(total_test_loss) + "Total Fake Loss:" + str(total_fake_test_loss)
+    print("Total Real Loss:"+str(total_test_loss) + "Total Fake Loss:" + str(total_fake_test_loss))
 
-    print float(np.sum(Loss < Fake_loss))/Loss.shape[0]
+    print(float(np.sum(Loss < Fake_loss))/Loss.shape[0])
 
     results.append(float(np.sum(Loss < Fake_loss))/Loss.shape[0])
 
 
-print np.mean(np.array(results))
+print(np.mean(np.array(results)))

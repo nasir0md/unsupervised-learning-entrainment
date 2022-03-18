@@ -39,7 +39,7 @@ num_files_test = num_files_all - num_files_train - num_files_val
 sessTrain = sessList[:num_files_train]
 sessVal = sessList[num_files_train:num_files_val+num_files_train]
 sessTest = sessList[num_files_val+num_files_train:]
-print len(sessTrain) + len(sessVal) + len(sessTest)
+print(len(sessTrain) + len(sessVal) + len(sessTest))
 
 # # Create Train Data file
 # temp_trainfile = 'data/tmp.csv'
@@ -123,10 +123,10 @@ for sess_file in sessTest:
 	xx = np.hstack((xx, spk_label.T.reshape([N,1])))
 	spk_base += 1
 	np.savetxt(ftmp, xx, delimiter=',')
-	print 'Test: ' +  sess_file , xx.shape[1]
+	print('Test: ' +  sess_file , xx.shape[1])
 
 	if xx.shape[1]!=913:
-		print sess_file 
+		print(sess_file) 
 ftmp.close()
 X_test = np.genfromtxt(temp_testfile, delimiter= ",")
 X_test = X_test.astype('float64')

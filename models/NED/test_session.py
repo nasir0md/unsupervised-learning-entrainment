@@ -120,11 +120,11 @@ for k in range(10):
 
 
 
-    print("Total Real Loss:"+str(total_test_loss) + "Total Fake Loss:" + str(total_fake_test_loss))
+    print(("Total Real Loss:"+str(total_test_loss) + "Total Fake Loss:" + str(total_fake_test_loss)))
 
-    print(float(np.sum(Loss < Fake_loss))/Loss.shape[0])
+    print((float(np.sum(Loss < Fake_loss))/Loss.shape[0]))
 
     results.append(float(np.sum(Loss < Fake_loss))/Loss.shape[0])
 
 
-print(np.mean(np.array(results)))
+print((np.mean(np.array(results))))

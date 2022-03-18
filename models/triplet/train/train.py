@@ -50,8 +50,8 @@ torch.save(model, 	model_path + 'triplet_64d_50ep_fisher.pkl')
 
 f= plt.figure()
 train_losses, val_losses = fit(triplet_train_loader, triplet_test_loader, model, loss_fn, optimizer, scheduler, n_epochs, cuda, log_interval)
-plt.plot(range(len(val_losses)),train_losses, range(len(val_losses)), val_losses)
-plt.plot(range(len(val_losses)),train_losses, range(len(val_losses)), val_losses)
+plt.plot(list(range(len(val_losses))),train_losses, list(range(len(val_losses))), val_losses)
+plt.plot(list(range(len(val_losses))),train_losses, list(range(len(val_losses))), val_losses)
 
 f.savefig("losses.pdf", bbox_inches='tight')
 

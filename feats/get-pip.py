@@ -30,7 +30,7 @@ if this_python < min_version:
         "The minimum supported Python version is {}.{}.".format(*min_version),
         "Please use https://bootstrap.pypa.io/pip/{}.{}/get-pip.py instead.".format(*this_python),
     ]
-    print("ERROR: " + " ".join(message_parts))
+    print(("ERROR: " + " ".join(message_parts)))
     sys.exit(1)
 
 

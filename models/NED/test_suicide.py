@@ -64,7 +64,7 @@ if 'l1' in model_name:
 elif 'l2' in model_name:
     p=2
 else:
-    print "need better model name"
+    print("need better model name")
     p=1
 
 
@@ -82,7 +82,7 @@ for sess_file in sessList:
     sess = basename(sess_file).split('.')[0]
     if 'Pre' not in sess and 'pre' not in sess:
         continue
-    print sess
+    print(sess)
     subj_id = float(sess[0:4])
     xx = np.array(hff[sess])
     count +=1
@@ -123,7 +123,7 @@ for sess_file in sessList:
         loss_fake = lp_distance(z_x, z_y_fake, p).data[0]    
 
         fwd_loss.append(loss_direct)
-        print 
+        print() 
 
         if xx[i,-1]==1:
             a2b_loss.append(loss_pair)
@@ -151,7 +151,7 @@ np.savetxt('similarity/suicide_nonorm_l1_30dim.txt', outdata, delimiter=',')
 Loss=np.array(Loss)
 Fake_loss=np.array(Fake_loss)
 
-print float(np.sum(Loss < Fake_loss))/Loss.shape[0]
+print(float(np.sum(Loss < Fake_loss))/Loss.shape[0])
 
 
 
