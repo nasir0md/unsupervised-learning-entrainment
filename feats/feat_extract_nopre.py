@@ -77,7 +77,7 @@ if extract:
 	not_wav = False
 	if basename(INPUT_audio).split('.')[-1] != 'wav':
 		not_wav = True
-		print('convert to .wav file...', file=sys.stderr) 
+		print('convert to .wav file...', sys.stderr)
 		# cmd2wav = 'sox ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
 		cmd2wav = '~/github/sph2pipe/sph2pipe -f rif ' + INPUT_audio +' '+ basename(INPUT_audio).split('.')[-2]+'.wav'
 		subprocess.call(cmd2wav, shell  = True)
@@ -88,11 +88,11 @@ if extract:
 	# downsample audio to 16kHz and convert to mono (unless file already downsampled)
 	# ------------------------------------------------------------------------
 	cmd_check_sample_rate = 'sox --i -r '+ INPUT_audio
-	sample_rate = commands.getstatusoutput(cmd_check_sample_rate)
+	sample_rate = subprocess.check_output(cmd_check_sample_rate)
 	not_16k = False
 	if sample_rate[1] != '16000':
 		not_16k = True
-		print("Resampling to 16k ... ", file=sys.stderr)
+		print("Resampling to 16k ... ", sys.stderr)
 		output_16k_audio = 'resampled--' + os.path.basename(INPUT_audio)
 		cmd_resample = 'sox %s -b 16 -c 1 -r 16k %s dither -s' %(INPUT_audio, output_16k_audio)
 		subprocess.call(cmd_resample, shell  = True)
@@ -110,7 +110,7 @@ if extract:
 		csv_file_name = feat_dir+'/'+basename(INPUT_audio).split('.wav')[0].split('--')[1] + '.csv'
 	else:
 		csv_file_name = feat_dir+'/'+basename(INPUT_audio).split('.wav')[0] + '.csv'
-	print("Using openSMILE to extract features ... ", file=sys.stderr)
+	print("Using openSMILE to extract features ... ", sys.stderr)
 	cmd_feat = '%s -nologfile -C -I %s -O %s' % (CONFIG_openSMILE, INPUT_audio, csv_file_name)
 	print(cmd_feat)
 	subprocess.call(cmd_feat, shell  = True)
@@ -228,7 +228,7 @@ for i, itm in enumerate(turn_level_index_list):
 # normalize for loudness 
 if norm:
 	# do normalization
-	print("Do session level feature normalization... ", file=sys.stderr)
+	print("Do session level feature normalization... ", sys.stderr)
 	# f0 normalization
 	f0                            = np.copy(feat_data[:, 70])
 	# replace 0 in f0 with nan
@@ -273,7 +273,7 @@ if norm:
 	jitter_shimmer_norm           = jitter_shimmer - jitter_shimmer_mean
 else:
 	# did not do session level normalization
-	print("Ignore session level feature normalization... ", file=sys.stderr)
+	print("Ignore session level feature normalization... ", sys.stderr)
 	# f0 normalization
 	f0                            = np.copy(feat_data[:, 70])
 	# replace 0 in f0 with nan

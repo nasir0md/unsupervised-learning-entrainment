@@ -13,7 +13,6 @@ csv
 pandas
 numpy
 subprocess
-commands
 matplotlib
 pdb
 glob
@@ -26,3 +25,4 @@ pprint
 pickle
 sklearn
 scipy
+torchvision
