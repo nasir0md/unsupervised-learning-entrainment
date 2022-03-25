@@ -62,11 +62,13 @@ fdset = 'data/train_Fisher_nonorm.h5'
 temp_testfile = 'data/tmp.csv'
 model_name = 'models/trained_VAE_nonorm_nopre_l1.pt'
 #FIX THIS
-data_dir_triplets = '/home/nasir/data/Fisher/feats_triplets_all/'
+data_dir_triplets_all = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_triplets_all'
+data_dir_triplets = '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_triplets'
+raw_featdir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats'
 # DEBUG = False # no saving of files; output in the terminal; first random seed from the list
 
-model_path = '/Users/meghavarshinikrishnaswamy/Downloads/workspace/acoustic/triplet/fisher/trained_models/'
-work_dir = '/Users/meghavarshinikrishnaswamy/Downloads/workspace/acoustic/NED_ecdc/'
+model_path = '/Users/meghavarshinikrishnaswamy/Downloads/workspace/acoustic/triplet/fisher/trained_models'
+work_dir = '/Users/meghavarshinikrishnaswamy/Downloads/workspace/acoustic/NED_ecdc'
 
 ##### ARGPARSE COMMANDS #######
 parser = argparse.ArgumentParser(description='Process some integers.')

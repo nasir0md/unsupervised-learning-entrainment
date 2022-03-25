@@ -87,8 +87,8 @@ if extract:
 	# ------------------------------------------------------------------------
 	# downsample audio to 16kHz and convert to mono (unless file already downsampled)
 	# ------------------------------------------------------------------------
-	cmd_check_sample_rate = 'sox --i -r '+ INPUT_audio
-	sample_rate = subprocess.check_output(cmd_check_sample_rate)
+	cmd_check_sample_rate = ['sox', '--i', '-r', INPUT_audio]
+	sample_rate = subprocess.check_output(cmd_check_sample_rate) #check_output is throwing an error
 	not_16k = False
 	if sample_rate[1] != '16000':
 		not_16k = True
@@ -112,6 +112,7 @@ if extract:
 		csv_file_name = feat_dir+'/'+basename(INPUT_audio).split('.wav')[0] + '.csv'
 	print("Using openSMILE to extract features ... ", sys.stderr)
 	cmd_feat = '%s -nologfile -C -I %s -O %s' % (CONFIG_openSMILE, INPUT_audio, csv_file_name)
+	# cmd_feat = '%s -nologfile -C %s -I %s -O %s' % (opensmile, CONFIG_openSMILE, INPUT_audio, csv_file_name)
 	print(cmd_feat)
 	subprocess.call(cmd_feat, shell  = True)
 
@@ -134,9 +135,9 @@ else:
 	ext='.csv'
 
 if extract:
-	transcript = transcript_dir + basename(INPUT_audio).split(ext)[0].split('--')[1] + '.txt'
+	transcript = transcript_dir + '/' + basename(INPUT_audio).split(ext)[0].split('--')[1] + '.txt'
 else:
-	transcript = transcript_dir + basename(INPUT_audio).split(ext)[0] + '.txt'
+	transcript = transcript_dir + '/' + basename(INPUT_audio).split(ext)[0] + '.txt'
 trans = open(transcript).readlines()
 # pdb.set_trace()
 for line in trans:
@@ -156,12 +157,12 @@ for line in trans:
 # csv_file_name = feat_dir +'/'+basename(INPUT_audio).split('.sph')[0] + '.csv'
 
 if extract:
-	csv_file_name = feat_dir +basename(INPUT_audio).split(ext)[0].split('--')[1]  + '.csv'
+	csv_file_name = feat_dir + '/' +basename(INPUT_audio).split(ext)[0].split('--')[1] + '.csv'
 else:
-	csv_file_name = feat_dir +basename(INPUT_audio).split(ext)[0]  + '.csv'
+	csv_file_name = feat_dir + '/' + basename(INPUT_audio).split(ext)[0] + '.csv'
 
 # read csv feature file
-csv_feat = pd.read_csv(csv_file_name, dtype=np.float32, error_bad_lines=False)
+csv_feat = pd.read_csv(csv_file_name, dtype=np.float32, on_bad_lines='warn')
 csv_feat = csv_feat.values.copy()
 print("this is a temporary fix, need to figure out why these weird feature extraction lines are getting printed in the first place")
 feat_data = np.copy(csv_feat)
@@ -366,7 +367,6 @@ whole_func_feat1 = final_feat_calculate(s1_list, all_raw_norm_feat)
 whole_func_feat2 = final_feat_calculate(s2_list, all_raw_norm_feat)
 whole_func_feat = np.hstack((whole_func_feat1,whole_func_feat2))
 
-
 ##-----------------------------------------------------------------------
 ## normalization at whole session level, using scikit learn
 ## -- for each feature 0 mean and 1 variance
@@ -376,6 +376,6 @@ whole_func_feat = np.hstack((whole_func_feat1,whole_func_feat2))
 
 if writing==True:
 	feat_csv_file_name = out_dir + '/' + basename(csv_file_name).split('.csv')[0] + '_IPU_func_feat.csv'
-	with open(feat_csv_file_name, 'wb') as fcsv:
+	with open(feat_csv_file_name, 'w') as fcsv: # changed 'wb' to 'w' to avoid TypeError
 		writer = csv.writer(fcsv)
 		writer.writerows(whole_func_feat)

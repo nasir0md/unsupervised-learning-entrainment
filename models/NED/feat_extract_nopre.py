@@ -97,7 +97,7 @@ if extract:
 	# ------------------------------------------------------------------------
 	# downsample audio to 16kHz and convert to mono (unless file already downsampled)
 	# ------------------------------------------------------------------------
-	cmd_check_sample_rate = 'sox --i -r '+ INPUT_audio
+	cmd_check_sample_rate = ['sox', '--i', '-r', INPUT_audio]
 	sample_rate = subprocess.check_output(cmd_check_sample_rate)
 	not_16k = False
 	if sample_rate[1] != '16000':
@@ -388,6 +388,6 @@ whole_func_feat = np.hstack((whole_func_feat1,whole_func_feat2))
 if writing==True:
 	feat_csv_file_name = out_dir + '/' + basename(csv_file_name).split('.csv')[0] + '_IPU_func_feat.csv'
 	# print feat_csv_file_name
-	with open(feat_csv_file_name, 'wb') as fcsv:
+	with open(feat_csv_file_name, 'w') as fcsv: # changed 'wb' to 'w' to avoid TypeError
 		writer = csv.writer(fcsv)
 		writer.writerows(whole_func_feat)

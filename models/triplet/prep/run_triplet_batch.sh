@@ -3,6 +3,9 @@
 cmddir=.
 featdir=/home/nasir/data/Fisher/feats_triplets
 raw_featdir=/home/nasir/data/Fisher/raw_feats
+data_dir_triplets= '/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats_triplets'
+raw_featdir='/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats'
+
 # audiodirroot=/data/Fisher/ldc2004s13
 
 numParallelJobs=4
