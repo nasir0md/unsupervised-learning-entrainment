@@ -4,6 +4,8 @@ cmddir=.
 featdir=/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats
 raw_featdir=/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats
 audiodirroot=/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2
+featextractfile=/Users/meghavarshinikrishnaswamy/github/unsupervised-learning-entrainment/feats/feat_extract_nopre.py
+opensmileconfig=Users/meghavarshinikrishnaswamy/github/unsupervised-learning-entrainment/feats/emobase2010_haoqi_revised.con
 
 numParallelJobs=24
 ctr=1
@@ -29,7 +31,7 @@ do
 	do
 		echo $f;
 	 (
-	 	python $cmddir/feat_extract_nopre.py --audio_file $f --openSMILE_config $cmddir/emobase2010_revised.conf --output_path $featdir
+	 /usr/local/Caskroom/miniconda/base/envs/entrainment_py3/bin/python3 $featextractfile --audio_file $f --openSMILE_config $opensmileconfig --output_path $featdir
 	 	) &
 	if [ $(($ctr % $numParallelJobs)) -eq 0 ]
 	then

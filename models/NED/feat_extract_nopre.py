@@ -4,6 +4,10 @@
 # Date   : 05-04-18
 # Description : resample to 16k Hz, and run openSMILE to extract features
 # ------------------------------------------------------------------------
+import sys
+print("sys.version: " + sys.version)
+print(str(sys.version_info))
+exit()
 from entrainment_config import *
 
 np.set_printoptions(threshold=np.inf)
@@ -28,7 +32,7 @@ np.set_printoptions(threshold=np.inf)
 
 IPU_gap=50
 writing=True   # set True for getting functionals
-extract=True 
+extract=True
 
 # For posidon -----------------------------------
 # transcript_dir='/home/nasir/xData/newdata/Fisher/ldc2004s13/fe_03_p1_sph1/trans/'
@@ -41,7 +45,7 @@ extract=True
 #------------------------------------------------
 
 # ------------------------------------------------------------------------
-# Params Setup				 
+# Params Setup
 # ------------------------------------------------------------------------
 parser = argparse.ArgumentParser(description='Process some integers.')
 
@@ -53,7 +57,7 @@ parser.add_argument('--openSMILE_config', type=str, required=False, default=open
 					help='config file of openSMILE')
 parser.add_argument('--output_path', type=str, required=False, default=out_dir,
 					help='output folder path')
-parser.add_argument('--norm', type=str, required=False, default=True, 
+parser.add_argument('--norm', type=str, required=False, default=True,
 					help='do session level normalization or not')
 parser.add_argument('--window_size', required=False, type=float, default=None)
 parser.add_argument('--shift_size', required=False, type=float, default=1)
@@ -205,11 +209,11 @@ for spch in spk_list:
 					turn_level_index_list[-1]=sample_index[start:stop]
 				else:
 					turn_level_index_list.append(sample_index[start:stop])
-					
+
 			else:
 				turn_level_index_list.append(sample_index[start:stop])
-				s2_found=True		
-			gap_found=True		
+				s2_found=True
+			gap_found=True
 	else:
 		if not gap_found:
 			turn_level_index_list.append(turn_level_index_list[-1])
@@ -231,11 +235,11 @@ for i, itm in enumerate(turn_level_index_list):
 	else:
 		s2_list.append(itm)
 ##-----------------------------------------------------------------------
-## feature selection and normalization 
+## feature selection and normalization
 ##-----------------------------------------------------------------------
 # remove the mean for mfcc
 # normalize for pitch = log(f_0/u_0)
-# normalize for loudness 
+# normalize for loudness
 if norm:
 	# do normalization
 	print("Do session level feature normalization... ", sys.stderr)
@@ -247,7 +251,7 @@ if norm:
 	f0_mean                       = np.nanmean(f0)
 	f0[~np.isnan(f0)]             = np.log2(f0[~np.isnan(f0)]/f0_mean)
 	f0                            = np.reshape(f0,(-1,1))
-	
+
 	# f0_de normalization
 	f0_de                          = np.copy(feat_data[:, 74])
 	f0_de[f0_de==0.]               = np.nan
@@ -260,22 +264,22 @@ if norm:
 	int_mean                      = np.mean(intensity)
 	intensity                     = intensity / int_mean
 	intensity                     = np.reshape(intensity, (-1,1))
-	
+
 	# intensity_de normalization
 	intensity_de                  = np.copy(feat_data[:,36])
 	int_de_mean                   = np.mean(intensity_de)
 	intensity_de                  = intensity_de / int_de_mean
 	intensity_de                  = np.reshape(intensity_de, (-1,1))
-	
-	# all other features normalization, just 
+
+	# all other features normalization, just
 	# feat_idx                      = range(3,34) + range(37, 68)   with spectral de
 	feat_idx                      = list(range(3,34))
 	mfcc_etc                      = np.copy(feat_data[:,feat_idx])
-	
+
 	mfcc_etc_mean                 = np.mean(mfcc_etc, axis=0)
 	mfcc_etc_mean.reshape(-1,1)
 	mfcc_etc_norm                 =  mfcc_etc - mfcc_etc_mean
-	
+
 	# jitter and shimmer normalization
 	idx_jitter_shimmer            = [71,72,73]
 	jitter_shimmer                = np.copy(feat_data[:,idx_jitter_shimmer])
@@ -292,30 +296,30 @@ else:
 	f0[f0==0.]                     = np.nan
 	f0_mean                       = np.nanmean(f0)
 	f0                            = np.reshape(f0,(-1,1))
-	
+
 	# f0_de normalization
 	f0_de                         = np.copy(feat_data[:, 74])
 	f0_de[f0_de==0.]               = np.nan
 	f0_de                         = np.reshape(f0_de,(-1,1))
-	
+
 	# intensity normalization
 	intensity                     = np.copy(feat_data[:,2])
 	intensity                     = np.reshape(intensity, (-1,1))
-	
+
 	# intensity_de normalization
 	intensity_de                  = np.copy(feat_data[:,36])
 	intensity_de                  = np.reshape(intensity_de, (-1,1))
-	
+
 	# feat_idx                      = range(3,34) + range(37, 68)   with spectral de
 	feat_idx                      = list(range(3,34))
 	mfcc_etc                      = np.copy(feat_data[:,feat_idx])
-	mfcc_etc_norm                 =  np.copy(mfcc_etc) 
-	
+	mfcc_etc_norm                 =  np.copy(mfcc_etc)
+
 	# jitter and shimmer normalization
 	idx_jitter_shimmer            = [71,72,73]
 	jitter_shimmer                = np.copy(feat_data[:,idx_jitter_shimmer])
 	jitter_shimmer[jitter_shimmer==0.] = np.nan
-	jitter_shimmer_norm           = jitter_shimmer 
+	jitter_shimmer_norm           = jitter_shimmer
 
 ##-----------------------------------------------------------------------
 ## function calculation
@@ -335,7 +339,7 @@ def final_feat_calculate(sample_index, all_raw_norm_feat):
 
 def func_calculate(input_feat_matrix):
 	'''
-		Given a numpy array calculate its statistic functions 
+		Given a numpy array calculate its statistic functions
 		6 functions: mean, median, std, perc1, perc99, range99-1
 	'''
 	output_feat = np.array([], dtype=np.float32).reshape(1, -1)
@@ -359,14 +363,14 @@ def func_calculate(input_feat_matrix):
 			total_len        = tmp_no_nan_sorted.shape[0]
 			perc1_idx        = np.int_(np.ceil(total_len*0.01))
 			if perc1_idx >= total_len:
-				perc1_idx = 0 
+				perc1_idx = 0
 			perc99_idx       = np.int_(np.floor(total_len*0.99))
 			if perc99_idx < 0 or perc99_idx >= total_len:
-				perc99_idx = total_len-1 
+				perc99_idx = total_len-1
 			perc1            = tmp_no_nan_sorted[perc1_idx]
 			perc99           = tmp_no_nan_sorted[perc99_idx]
 			range99_1        = perc99 - perc1
-		# append for one 
+		# append for one
 		new_func = np.array([mean_tmp, median_tmp, std_tmp, perc1, perc99, range99_1])
 		new_func = np.reshape(new_func, (1,6))
 		output_feat = np.hstack((output_feat,new_func))

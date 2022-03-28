@@ -5,8 +5,8 @@
 featdir=/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/feats
 raw_featdir=/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/raw_feats
 audiodirroot=/Users/meghavarshinikrishnaswamy/Downloads/Fisher_corpus/fisher_eng_tr_sp_LDC2004S13_zip_2
-featextractfile=$PWD/feats/feat_extract_nopre.py
-opensmileconfig=$PWD/feats/emobase2010_haoqi_revised.conf
+featextractfile=/Users/meghavarshinikrishnaswamy/github/unsupervised-learning-entrainment/feats/feat_extract_nopre.py
+opensmileconfig=Users/meghavarshinikrishnaswamy/github/unsupervised-learning-entrainment/feats/emobase2010_haoqi_revised.conf
 
 numParallelJobs=24
 ctr=1
@@ -30,7 +30,8 @@ for dir in $audiodirroot/f*;
 do
 	for f in  $dir/audio/*/*.sph;
 	do
-		echo $f;
+		#echo $f;
+
 	 (
 
 	 	/usr/local/Caskroom/miniconda/base/envs/entrainment_py3/bin/python3 $featextractfile --audio_file $f --openSMILE_config $opensmileconfig --output_path $featdir
