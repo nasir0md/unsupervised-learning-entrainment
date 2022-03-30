@@ -4,11 +4,7 @@
 # Date   : 05-04-18
 # Description : resample to 16k Hz, and run openSMILE to extract features
 # ------------------------------------------------------------------------
-# import sys
-# print(sys.path)
-# print("sys.version: " + sys.version)
-# print(str(sys.version_info))
-# exit()
+
 from entrainment_config import *
 
 # import matplotlib.pyplot as plt
