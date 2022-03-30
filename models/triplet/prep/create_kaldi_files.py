@@ -2,7 +2,7 @@ from entrainment_config import *
 
 transcript_dir= transcript_dir
 audio_dir_root = audio_dir_root
-metaf = open(fisher_meta, 'rb')
+metaf = open(fisher_meta, 'r')
 
 
 reader = csv.reader(metaf)
