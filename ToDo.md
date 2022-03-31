@@ -35,3 +35,7 @@
         - Code for creating `fisher_meta.csv`
     2. Editing config file
     3. Main entry Point
+16. Fix requirements
+17. Upload Fisher corpus
+18. Add master directory for all Fisher-related stuff
+19. Add `chmod` info to Readme
